@@ -4,10 +4,10 @@
         <span class="todo">
           {{todo.name}}
         </span>
-        <button class="update">
+        <button class="update" (click)="onUpdateTodo(todo.id, todo.name)">
           Изменить
         </button>
-        <button class="delete" >
+        <button class="delete" (click)="onDeleteTodo(todo.id)" >
           x
         </button>
     </li>

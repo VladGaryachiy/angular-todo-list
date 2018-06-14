@@ -1,10 +1,11 @@
 
 
 <div class="todo-list-form-container">
-  <form action="" id="todo-list-form" class="todo-list-form">
-    <input type="text" class="todo-list-text" id="todo-list-text"/>
+  <!--отменяем перезагрузку страницы при отправки формы-->
+  <form action="" id="todo-list-form" class="todo-list-form" #todoForm="ngForm"  (ngSubmit)="createTodo();todoForm.reset()">
+    <input type="text" name="todo" class="todo-list-text" id="todo-list-text" [(ngModel)]="newTodo"/>
 
-    <button type="submit" class="todo-list-button" id="todo-list-button" >add</button>
+    <button type="submit" class="todo-list-button" id="todo-list-button" [disabled]="todoForm.form.invalid">add</button>
     <button type="button" class="save" id="save">Save</button>
 
     <button type="button" id="butSortByDate" class="butSortByDate">Сортировка по-дате</button>

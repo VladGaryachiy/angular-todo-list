@@ -11,8 +11,6 @@ li{
   display: flex;
   flex-direction: row;
 
-
-
   span{
     display: block;
     float: left;
@@ -62,7 +60,6 @@ li{
   .update{
     cursor: pointer;
   }
-
   .update:active{
     border:none;
     outline: none;

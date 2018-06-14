@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Todo from '../todo';
+import {Todos} from '../localStorage';
 
 @Component({
   selector: 'app-todo-list-container',
@@ -8,16 +9,13 @@ import Todo from '../todo';
 })
 export class TodoListContainerComponent implements OnInit {
 
-	 todos:Todo[] = [
-	   {id:1, name:"1", dateCreate:"qwe", dateUpdate:"asdasd"},
-	   {id:1, name:"2", dateCreate:"qwe", dateUpdate:"asdasd"},
-       {id:1, name:"3", dateCreate:"qwe", dateUpdate:"asdasd"}
-    ]		
+  todos: Todo[] = Todos;
 
 
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

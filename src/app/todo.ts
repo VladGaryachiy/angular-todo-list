@@ -3,6 +3,6 @@
       public id: number,
       public name: string,
       public dateCreate: string,
-      public dateUpdate: string
+      public dateUpdate?: string
   ) {}
  }

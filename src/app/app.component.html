@@ -3,8 +3,8 @@
   <div class="main-todo-list-container">
     <h1 class="todo-list-main-name">Todo List</h1>
 
-      <app-todo-list-form></app-todo-list-form>
+      <app-todo-list-form [updateTodo]="UpdateTodoData"></app-todo-list-form>
 
-	  <app-todo-list-container></app-todo-list-container>	
+	    <app-todo-list-container (updateTodo)="updateTodo($event)"></app-todo-list-container>
 
   </div>
