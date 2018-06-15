@@ -1,0 +1,21 @@
+
+<div class="todo-list-container" id="todo-list-container">
+  <div class="sort-buttons-container">
+    <button type="button" id="butSortByDate" class="butSortByDate">Сортировка по-дате</button>
+    <button type="button" id="butSortByName" class="butSortByName">Сортировка по-имени</button>
+  </div>
+  <ul class="todo-list" id="todo-list">
+    <li class="element-todo-list" *ngFor="let todo of todos">
+        <span class="todo">
+          {{todo.name}}
+        </span>
+        <button class="update" (click)="onUpdate(todo.id, todo.name)">
+          Изменить
+        </button>
+        <button class="delete" (click)="onDelete(todo.id)">
+          x
+        </button>
+    </li>
+
+  </ul>
+</div>

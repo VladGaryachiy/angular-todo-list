@@ -1,0 +1,12 @@
+
+  <div class="todo-list-container">
+    <h1 class="todo-list-main-name">Todo List</h1>
+
+    <!--компонент формы-->
+    <app-todo-list-form [updateText]="nameTodoForUpdate" (createNewTodo)="createTodo($event)" (saveUpdate)="saveUpdate($event)"></app-todo-list-form>
+
+    <!--компонент списка-->
+    <app-list-items [todos]="todos" (updateTodo)="updateTodo($event)"  (deleteTodo)="deleteTodo($event)"></app-list-items>
+  </div>
+
+

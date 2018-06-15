@@ -4,7 +4,7 @@
   left:20%;
 
   form{
-    height: 100px;
+    height: 57px;
     border: 1px solid lightgray;
     padding-top: 32px;
     padding-bottom: 20px;
@@ -56,21 +56,16 @@
       color:gray;
       font-family: URW Chancery L, cursive;
       cursor: pointer;
+      display:none;
+
     }
+
+    .save_visible{
+      display:block;
+    }
+    .add_hidden{
+      display: none;
+    }
+
   }
-}
-.butSortByDate, .butSortByName {
-  margin-top: 20px;
-  height: 44px;
-  background-color:white;
-  border: 1px solid lightgray;
-  font-size:14px;
-  cursor:pointer;
-  color:gray;
-  font-family: URW Chancery L, cursive;
-  border-radius: 3px;
-  margin-bottom: 5px;
-}
-.butSortByName{
-  margin-left: 8px;
 }

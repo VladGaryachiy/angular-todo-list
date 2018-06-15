@@ -1,22 +1,26 @@
-import { BrowserModule } from '@angular/platform-browser'; /*модуль для работы с браузерными приложениями*/
-import { NgModule } from '@angular/core'; /*главный модуль который собирает все компоненты и подключает другие модули для работы с ними*/
-import { FormsModule } from '@angular/forms'; /*модуль для работы с формами*/
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
+/*компоненты*/
+import { TodoListComponent } from './components/todo-list/todo-list.component';
+import { TodoListFormComponent } from './components/todo-list-form/todo-list-form.component';
+import { ListItemsComponent } from './components/list-items/list-items.component';
 import { AppComponent } from './app.component';
-import { TodoListFormComponent } from './todo-list-form/todo-list-form.component';
-import { TodoListComponent } from './todo-list/todo-list.component';
-import { TodoListPaginationComponent } from './todo-list-pagination/todo-list-pagination.component';
-import { TodoListContainerComponent } from './todo-list-container/todo-list-container.component';
+import { FormsModule } from '@angular/forms';
+
+/*сервисы*/
+import { LocalStorageService } from './services/local-storage.service';
+import { TodoListService } from './services/todo-list.service';
+
 
 @NgModule({
 
   /*тут записываються все компоненты которые мы создали*/
   declarations: [
     AppComponent,
-    TodoListFormComponent,
     TodoListComponent,
-    TodoListPaginationComponent,
-    TodoListContainerComponent
+    TodoListFormComponent,
+    ListItemsComponent
   ],
 
   /*тут все импортированые модули, которые нужны для роботы с компонентами*/
@@ -25,7 +29,10 @@ import { TodoListContainerComponent } from './todo-list-container/todo-list-cont
   ],
 
   /*тут будем подключать сервисы*/
-  providers: [],
+  providers: [
+    TodoListService,
+    LocalStorageService
+  ],
   /*тут указываеться главный компонент, который будет запускаться*/
   bootstrap: [AppComponent]
 })

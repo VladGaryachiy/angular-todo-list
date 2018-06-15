@@ -1,10 +1,6 @@
 
-<!-- main container -->
-  <div class="main-todo-list-container">
-    <h1 class="todo-list-main-name">Todo List</h1>
+    <div class="main-container">
+      <!--main component todo list-->
+      <app-todo-list></app-todo-list>
+    </div>
 
-      <app-todo-list-form [updateTodo]="UpdateTodoData"></app-todo-list-form>
-
-	    <app-todo-list-container (updateTodo)="updateTodo($event)"></app-todo-list-container>
-
-  </div>
