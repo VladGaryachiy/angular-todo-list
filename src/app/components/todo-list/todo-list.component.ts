@@ -37,6 +37,15 @@ export class TodoListComponent implements OnInit {
     arr[1].value = '';
   }
 
+  searchTodos(text: string): void {
+    this.todos = this.todoListService.searchTodos(text);
+  }
+  sortByDate(): void {
+    this.todoListService.sortByDate();
+  }
+  sortByName(): void {
+    this.todoListService.sortByName();
+  }
 
 
 

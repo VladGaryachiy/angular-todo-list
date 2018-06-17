@@ -14,6 +14,7 @@ export class TodoListFormComponent implements OnInit {
 
   @Output() createNewTodo = new EventEmitter();
   @Output() saveUpdate = new EventEmitter();
+  @Output() searchTodos = new EventEmitter();
 
   @Input() set updateText(nameTodoForUpdate: string) {
     if (nameTodoForUpdate != null || undefined) {
@@ -36,6 +37,10 @@ export class TodoListFormComponent implements OnInit {
   onSaveUpdate(): void {
     this.saveUpdate.emit([this.todoName, this.eventInput.target[0]]);
     this.switchButton = false;
+  }
+
+  onSearchTodo(): void {
+    this.searchTodos.emit(this.todoName);
   }
 
 }

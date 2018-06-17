@@ -11,6 +11,9 @@ export class ListItemsComponent implements OnInit {
   @Input() todos: Todo[];
   @Output() deleteTodo = new EventEmitter();
   @Output() updateTodo = new EventEmitter();
+  @Output() sortByDate = new EventEmitter();
+  @Output() sortByName = new EventEmitter();
+
 
   ngOnInit() {
   }
@@ -23,6 +26,12 @@ export class ListItemsComponent implements OnInit {
     this.updateTodo.emit([id, name]);
   }
 
+  onSortTodoByDate(): void {
+    this.sortByDate.emit();
+  }
+  onSortTodoByName(): void {
+    this.sortByName.emit();
+  }
 
 
 

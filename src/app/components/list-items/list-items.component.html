@@ -1,8 +1,8 @@
 
 <div class="todo-list-container" id="todo-list-container">
   <div class="sort-buttons-container">
-    <button type="button" id="butSortByDate" class="butSortByDate">Сортировка по-дате</button>
-    <button type="button" id="butSortByName" class="butSortByName">Сортировка по-имени</button>
+    <button type="button" id="butSortByDate" class="butSortByDate" (click)="onSortTodoByDate()">Сортировка по-дате</button>
+    <button type="button" id="butSortByName" class="butSortByName" (click)="onSortTodoByName()">Сортировка по-имени</button>
   </div>
   <ul class="todo-list" id="todo-list">
     <li class="element-todo-list" *ngFor="let todo of todos">
