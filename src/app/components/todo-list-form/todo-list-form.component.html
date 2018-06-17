@@ -4,7 +4,7 @@
   <!--отменяем перезагрузку страницы при отправки формы-->
   <form action="" id="todo-list-form" class="todo-list-form" #todoForm="ngForm"  (ngSubmit)="onCreateTodo($event);todoForm.reset()" >
     <input type="text" name="todo" class="todo-list-text" #text id="todo-list-text" [(ngModel)]="todoName" (keyup)="onSearchTodo()" />
-    <button type="submit" class="todo-list-button" id="todo-list-button"  [disabled]="!text.value" [ngClass]="{add_hidden:switchButton === true}">add</button>
-    <button type="button" class="save" id="save" (click)="onSaveUpdate()" [disabled]="!text.value" [ngClass]="{save_visible:switchButton === true}">save</button>
+    <button type="submit" class="todo-list-button" id="todo-list-button"  [disabled]="!text.value" [ngClass]="{add_hidden:switchButton}">add</button>
+    <button type="button" class="save" id="save" (click)="onSaveUpdate()" [disabled]="!text.value" [ngClass]="{save_visible:switchButton}">save</button>
   </form>
 </div>
