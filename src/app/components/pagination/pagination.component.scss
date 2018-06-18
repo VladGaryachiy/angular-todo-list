@@ -1,0 +1,28 @@
+.pagination-container{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+}
+
+.link-pages{
+  cursor:pointer;
+  background: white;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+}
+
+.link-pages:active{
+  border:none;
+  outline: none;
+}
+.link-pages ~ .link-pages{
+  margin-left: 5px;
+}
+
+.prev , .next{
+  background: white;
+  cursor:pointer;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+}

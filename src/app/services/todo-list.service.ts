@@ -23,7 +23,7 @@ export class TodoListService {
   private getDate(): string {
     let result: string = '';
     const date: any = new Date();
-    return result = date.toUTCString();
+    return result = date.toUTCString().replace('GMT', '').trim();
   }
 
   public createTodo(name: string): void {
@@ -80,6 +80,8 @@ export class TodoListService {
       return new Date(b.dateCreate) - new Date(a.dateCreate);
     });*/
   }
+
+
 
 
 }

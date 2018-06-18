@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 /*сервисы*/
 import { LocalStorageService } from './services/local-storage.service';
 import { TodoListService } from './services/todo-list.service';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 
 @NgModule({
@@ -18,9 +19,10 @@ import { TodoListService } from './services/todo-list.service';
   /*тут записываються все компоненты которые мы создали*/
   declarations: [
     AppComponent,
-    TodoListComponent,
+    PaginationComponent,
     TodoListFormComponent,
-    ListItemsComponent
+    ListItemsComponent,
+    TodoListComponent
   ],
 
   /*тут все импортированые модули, которые нужны для роботы с компонентами*/

@@ -6,7 +6,10 @@
     <app-todo-list-form (searchTodos)="searchTodos($event)"  [updateText]="nameTodoForUpdate" (createNewTodo)="createTodo($event)" (saveUpdate)="saveUpdate($event)"></app-todo-list-form>
 
     <!--компонент списка-->
-    <app-list-items [todos]="todos" (sortByDate)="sortByDate()" (sortByName)="sortByName()" (updateTodo)="updateTodo($event)"  (deleteTodo)="deleteTodo($event)"></app-list-items>
+    <app-list-items [todos]="todosForVisible" (sortByDate)="sortByDate()" (sortByName)="sortByName()" (updateTodo)="updateTodo($event)"  (deleteTodo)="deleteTodo($event)"></app-list-items>
+
+    <!--компонент пагинации-->
+    <app-pagination [todosLength]="todos.length" (visibleTodos)='visibleTodos($event)'> </app-pagination>
   </div>
 
 

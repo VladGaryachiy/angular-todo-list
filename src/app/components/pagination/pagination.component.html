@@ -1,0 +1,16 @@
+
+
+<div class="pagination-container" id="pagination-container">
+  <div id = "prev-button-container" class="prev-button-container">
+    <button *ngIf="todosLength > 3" class="prev">prev</button>
+  </div>
+
+  <div class="pages-container" id="pages-container">
+      <button *ngFor = 'let but of countButton' class="link-pages">{{but}}</button>
+  </div>
+
+  <div id = "next-button-container" class="next-button-container">
+    <button *ngIf="todosLength > 3" class="next">next</button>
+  </div>
+</div>
+

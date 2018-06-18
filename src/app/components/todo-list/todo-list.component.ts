@@ -10,6 +10,7 @@ import { Todo } from '../../todo';
 })
 export class TodoListComponent implements OnInit {
   todos: Todo[] = [];
+  todosForVisible: Todo[] = [];
 
   idTodoForUpdate: number = 0;
   nameTodoForUpdate: string;
@@ -45,6 +46,11 @@ export class TodoListComponent implements OnInit {
   }
   sortByName(): void {
     this.todoListService.sortByName();
+  }
+  visibleTodos(vTodo: number): void {
+    for ( let i = 0; i < vTodo; i++) {
+      this.todosForVisible[i] = this.todos[i];
+    }
   }
 
 

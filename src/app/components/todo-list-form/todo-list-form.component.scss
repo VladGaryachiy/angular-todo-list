@@ -23,7 +23,12 @@
       font-family: URW Chancery L, cursive;
       position: relative;
       left:10%;
-
+    }
+    input.ng-touched.ng-invalid {
+      border:solid red 2px;
+    }
+    input.ng-touched.ng-valid {
+      border:solid green 2px;
     }
     .todo-list-button{
       position: relative;
@@ -69,3 +74,4 @@
 
   }
 }
+

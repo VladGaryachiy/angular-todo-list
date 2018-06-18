@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChanges } from '@angular/core';
 import {TodoListService} from '../../services/todo-list.service';
 
 @Component({
@@ -27,11 +27,9 @@ export class TodoListFormComponent implements OnInit {
   ngOnInit() {
   }
 
-
   onCreateTodo(event: Event): void {
     this.createNewTodo.emit(this.todoName);
     this.eventInput = event;
-    console.dir(event);
   }
 
   onSaveUpdate(): void {
