@@ -5,7 +5,7 @@
     <button type="button" id="butSortByName" class="butSortByName" (click)="onSortTodoByName()">Сортировка по-имени</button>
   </div>
   <ul class="todo-list" id="todo-list">
-    <li class="element-todo-list" *ngFor="let todo of todos">
+    <li  class="element-todo-list" *ngFor="let todo of todos">
         <span class="todo">
           {{todo.name}}
         </span>

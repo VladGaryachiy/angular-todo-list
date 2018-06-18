@@ -9,7 +9,7 @@
     <app-list-items [todos]="todosForVisible" (sortByDate)="sortByDate()" (sortByName)="sortByName()" (updateTodo)="updateTodo($event)"  (deleteTodo)="deleteTodo($event)"></app-list-items>
 
     <!--компонент пагинации-->
-    <app-pagination [todosLength]="todos.length" (visibleTodos)='visibleTodos($event)'> </app-pagination>
+    <app-pagination (clickPrevButton)="clickPrevButton($event)" (clickNextButton)="clickNextButton($event)" (clickNumberButton)="clickNumberButton($event)"   [todos]="todos"   [todosLength]="todos.length" (visibleTodos)='visibleTodos($event)' ></app-pagination>
   </div>
 
-
+<!--(clickNumberButton)="clickNumberButton($event)"-->

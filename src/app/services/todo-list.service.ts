@@ -74,13 +74,20 @@ export class TodoListService {
         return 1;
       }
     });
+
+    this.localStorageService.setLocalStorage(this._todos);
   }
   public sortByDate(): any {
-   /* this._todos.sort(function(a, b) {
-      return new Date(b.dateCreate) - new Date(a.dateCreate);
-    });*/
+    this._todos.sort(function (a, b) {
+      if (a.dateCreate < b.dateCreate) {
+        return -1;
+      }
+      if (a.dateCreate > b.dateCreate) {
+        return 1;
+      }
+    });
+    this.localStorageService.setLocalStorage(this._todos);
   }
-
 
 
 
