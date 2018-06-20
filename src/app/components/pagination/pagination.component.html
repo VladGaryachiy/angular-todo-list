@@ -6,7 +6,7 @@
   </div>
 
   <div class="pages-container" id="pages-container">
-      <button *ngFor = 'let but of countButton' (click)="onNumberButtonClick(but)" class="link-pages">{{but}}</button>
+      <button *ngFor ='let but of countButton' (click)="onNumberButtonClick(but, $event)" [ngClass]="{active:but === numberButtonClick}" class="link-pages">{{but}}</button>
   </div>
 
   <div id = "next-button-container" class="next-button-container">

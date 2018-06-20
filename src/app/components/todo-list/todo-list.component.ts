@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { TodoListService } from '../../services/todo-list.service';
 import { Todo } from '../../todo';
 
@@ -11,22 +11,27 @@ import { Todo } from '../../todo';
 export class TodoListComponent implements OnInit {
   todos: Todo[] = [];
   todosForVisible: Todo[] = [];
+  checkSort: boolean = false;
 
   idTodoForUpdate: number = 0;
   nameTodoForUpdate: string;
 
 
   constructor(private todoListService: TodoListService  ) { }
-  ngOnInit() {   }
+  ngOnInit() {
+    this.todoListService.todos.subscribe(todos => { this.todos = todos; });
+    console.log(1);
+  }
 
   createTodo(name: string): void {
     this.todoListService.createTodo(name);
-    this.todos = this.todoListService.todos;
+    console.log(this.todos);
+/*    this.todos = this.todoListService.todos;*/
   }
 
   deleteTodo(id: number): void {
     this.todoListService.deleteTodo(id);
-    this.todos = this.todoListService.todos;
+   /* this.todos = this.todoListService.todos;*/
   }
 
   updateTodo(arr): void { /*при нажатии кнопки в задаче*/
@@ -39,22 +44,22 @@ export class TodoListComponent implements OnInit {
   }
 
   searchTodos(text: string): void {
-    this.todos = this.todoListService.searchTodos(text);
+    this.todoListService.searchTodos(text);
+   /* this.todos = this.todoListService.searchTodos(text);*/
   }
   sortByDate(): void {
     this.todoListService.sortByDate();
-    this.todos = this.todoListService.todos;
+    this.checkSort = !this.checkSort;
   }
   sortByName(): void {
     this.todoListService.sortByName();
-    this.todos = this.todoListService.todos;
+    this.checkSort = !this.checkSort;
   }
   visibleTodos(vTodo: number): void {
     this.todosForVisible.length = 0;
       for ( let i = 0; i < vTodo; i++) {
         this.todosForVisible[i] = this.todos[i];
       }
-
   }
   clickNumberButton(coordPage): void {
     const from = coordPage[0];

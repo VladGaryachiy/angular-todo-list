@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from './local-storage.service';
 import { Todo } from '../todo';
+import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+import { Subject } from 'rxjs';
+
 
 
 
@@ -9,12 +13,19 @@ import { Todo } from '../todo';
 })
 export class TodoListService {
 
-  private _todos: any = [];
+  private _todos;
+  private todosData: Todo[] = [];
   constructor(private localStorageService: LocalStorageService) {
   }
 
-  public get todos(): Todo[] {
-    return this._todos = this.localStorageService.getLocalStorage();
+  public get todos(): Observable<Todo[]> {
+     if (!this._todos) {
+       const todos = this.localStorageService.getLocalStorage();
+       this._todos = new Subject();
+       this._todos.next(todos);
+     }
+     return this._todos.asObservable();
+
   }
 
   private getId(): number {
@@ -28,44 +39,48 @@ export class TodoListService {
 
   public createTodo(name: string): void {
     const todo: Todo = new Todo(this.getId(), name, this.getDate());
-    this._todos = [...this._todos, todo];
-    this.localStorageService.setLocalStorage(this._todos);
+    this.todosData = [...this.todosData, todo];
+    this._todos.next(this.todosData);
+/*    this.localStorageService.setLocalStorage(this._todos);*/
   }
 
   public deleteTodo(todoId: number): void {
-    this._todos = this._todos.filter(todo => todo.id !== todoId);
-    this.localStorageService.setLocalStorage(this._todos);
+    this.todosData = this.todosData.filter(todo => todo.id !== todoId);
+    this._todos.next(this.todosData);
+/*    this.localStorageService.setLocalStorage(this._todos);*/
   }
 
   public updateTodo(todoId: number, name: string): void {
-      this._todos.forEach( todo => {
+    this.todosData.forEach( todo => {
           if (todo.id === todoId) {
             todo.name = name;
             todo.dateUpdate = this.getDate();
           }
       });
-    this.localStorageService.setLocalStorage(this._todos);
+    this._todos.next(this.todosData);
+/*    this.localStorageService.setLocalStorage(this._todos);*/
   }
-  public searchTodos(nameSearch: string): Todo[] {
+  public searchTodos(nameSearch: string): void {
     const search_todo: Todo[] = [];
     const req = new RegExp(nameSearch, 'i');
 
-   if (this._todos) {
-     this._todos.forEach(item => {
+   if (this.todosData) {
+     this.todosData.forEach(item => {
        if (req.test(item.name)) {
          search_todo.push(item);
        }
      });
    }
     if (search_todo.length) {
-      return search_todo;
+      this._todos.next(search_todo);
+  /*    return search_todo;*/
     } else {
-      return this._todos;
+      this._todos.next(this.todosData);
     }
 
   }
   public sortByName(): void {
-    this._todos.sort((a, b) => {
+    this.todosData.sort((a, b) => {
       const nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase();
       if (nameA < nameB) {
         return -1;
@@ -74,21 +89,18 @@ export class TodoListService {
         return 1;
       }
     });
-
-    this.localStorageService.setLocalStorage(this._todos);
+    this._todos.next(this.todosData);
   }
-  public sortByDate(): any {
-    this._todos.sort(function (a, b) {
+  public sortByDate(): void {
+    this.todosData.sort(function (a, b) {
       if (a.dateCreate < b.dateCreate) {
-        return -1;
-      }
-      if (a.dateCreate > b.dateCreate) {
         return 1;
       }
+      if (a.dateCreate > b.dateCreate) {
+        return -1;
+      }
     });
-    this.localStorageService.setLocalStorage(this._todos);
+    this._todos.next(this.todosData);
   }
-
-
 
 }

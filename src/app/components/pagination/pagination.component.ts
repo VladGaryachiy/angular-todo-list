@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { Todo } from '../../todo';
 
 
@@ -13,9 +13,10 @@ export class PaginationComponent implements OnInit, OnChanges {
   countElementsInPage: number = 3; /*кол-во елементов на странице*/
   lastPage: number = null; // координаты последней страницы
   selectNumberButton: number = null; /*определяем какие кнопки красить*/
+  numberButtonClick: number = 1;
 
   @Input() todosLength;
-  @Input() todos; /*импорт для того что бы работала сортировка*/
+  @Input() checkSort; /*импорт для того что бы работала сортировка*/
   @Output() visibleTodos = new EventEmitter();
   @Output() clickNumberButton = new EventEmitter();
   @Output() clickPrevButton = new EventEmitter();
@@ -28,14 +29,14 @@ export class PaginationComponent implements OnInit, OnChanges {
   ngOnChanges() {
     this.createPaginationButton();
     this.countClick = 0;
+    this.numberButtonClick = 1;
 
-    if (this.todosLength <= 3) {
+    /*реагируем на сортировку*/
+    if (this.todosLength <= 3 ) {
       this.visibleTodos.emit(this.todosLength);
     } else {
       this.visibleTodos.emit(3);
     }
-
-
 
   }
   createPaginationButton(): void {
@@ -49,13 +50,13 @@ export class PaginationComponent implements OnInit, OnChanges {
      }
   }
 
-  onNumberButtonClick(numberButton: number): void {
+  onNumberButtonClick(numberButton: number, event: Event): void {
+    this.numberButtonClick = numberButton; /*записываем номер кнопки на которую нажали*/
     if (numberButton === 1) {
       this.countClick = 0;
     } else {
       this.countClick = numberButton * 3 - 3;
     }
-
     const from = this.countElementsInPage * numberButton - 3; /*от*/
     const to = this.countElementsInPage * numberButton; /*до*/
 
@@ -70,7 +71,7 @@ export class PaginationComponent implements OnInit, OnChanges {
     if (this.countClick >= 3) {
       this.countClick -= 3; /*если нажали то добаляем 3 */
     }
-    this.selectNumberButton -= 1;
+    this.numberButtonClick -= 1;
 
     if (this.todosLength >  this.countClick) {
       selectedTodos.length = 0;
@@ -122,7 +123,7 @@ export class PaginationComponent implements OnInit, OnChanges {
 
 
 /*    this.countClick += 3; /!*если нажали то добаляем 3 *!/*/
-    this.selectNumberButton += 1;
+    this.numberButtonClick += 1;
 
     if (this.todosLength >  this.countClick) {
       selectedTodos.length = 0;

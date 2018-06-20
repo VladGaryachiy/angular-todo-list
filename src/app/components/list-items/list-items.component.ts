@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Todo } from '../../todo';
 
 @Component({
@@ -6,7 +6,7 @@ import { Todo } from '../../todo';
   templateUrl: './list-items.component.html',
   styleUrls: ['./list-items.component.scss']
 })
-export class ListItemsComponent implements OnInit {
+export class ListItemsComponent implements OnInit, OnChanges {
 
   @Input() todos: Todo[];
   @Output() deleteTodo = new EventEmitter();
@@ -16,6 +16,9 @@ export class ListItemsComponent implements OnInit {
 
 
   ngOnInit() {
+  }
+  ngOnChanges () {
+
   }
 
   onDelete(id: number): void {
@@ -28,9 +31,13 @@ export class ListItemsComponent implements OnInit {
 
   onSortTodoByDate(): void {
     this.sortByDate.emit();
+
   }
   onSortTodoByName(): void {
     this.sortByName.emit();
+    console.log('in todo-list-items');
+    console.log(this.todos);
+
   }
 
 
