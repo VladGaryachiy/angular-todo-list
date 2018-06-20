@@ -78,58 +78,12 @@ export class PaginationComponent implements OnInit, OnChanges {
         if (this.numberButtonClick <= this.countElementsInPage) {
           from = (this.numberButtonClick * this.countElementsInPage)  - this.countElementsInPage;
         } else {
-          from = (this.numberButtonClick - this.countElementsInPage) + 1;
+          from = (this.numberButtonClick * this.countElementsInPage) - this.countElementsInPage;
         }
 
         const resultCoordData: CoordDataInterface = {from: from, to: to};
 
         this.clickPrevButton.emit(resultCoordData);
-
-
-
-/*
-    const selectedTodos: number[] = [];
-
-    this.lastPage = this.todosLength -  this.countClick; /!*остаток с последней страницы*!/
-
-    if (this.countClick >= 3) {
-      this.countClick -= 3; /!*если нажали то добаляем 3 *!/
-    }
-    this.numberButtonClick -= 1;
-
-    if (this.todosLength >  this.countClick) {
-      selectedTodos.length = 0;
-      for (let i = this.countClick ; i < this.countClick + 3; i++ ) {
-        selectedTodos.push(i);
-      }
-    }
-    /!*если осталось 1 елемента*!/
-    if (this.lastPage === 1) {
-      selectedTodos.length = 0;
-      for (let i = this.todosLength - 4; i < this.todosLength - 1; i++ ) {
-        selectedTodos.push(i);
-      }
-    }
-    /!*елси остался 2 елемент*!/
-    if (this.lastPage === 2) {
-      selectedTodos.length = 0;
-      for (let i = this.todosLength - 5; i < this.todosLength - 2; i++ ) {
-        selectedTodos.push(i);
-      }
-    }
-
-    if (this.countClick <= 0) {
-      selectedTodos.length = 0;
-      this.countClick = 0;
-      this.selectNumberButton = 1;
-      for (let i = this.countClick; i <  this.countClick + 3; i++ ) {
-        selectedTodos.push(i);
-      }
-    }
-
-    const from: number = selectedTodos[0];
-    const to: number = selectedTodos[2];
-    this.clickPrevButton.emit([from, to]);*/
   }
 
 
@@ -142,7 +96,6 @@ export class PaginationComponent implements OnInit, OnChanges {
         to = this.todosLength;
     }
 
-
     let from: number = (this.numberButtonClick * this.countElementsInPage) - this.countElementsInPage;
     if (from >= this.todosLength) {
       this.numberButtonClick -= 1;
@@ -152,71 +105,5 @@ export class PaginationComponent implements OnInit, OnChanges {
 
     this.clickNextButton.emit(resultCoordData);
 
-
-   /* const selectedTodos: number[] = [];
-      if (this.countClick === 0) {
-        this.countClick += 3;
-      } else {
-        this.countClick += 3;
-      }
-    if (this.countClick < this.todosLength) {
-      this.lastPage = this.todosLength -  this.countClick; /!*остаток с последней страницы*!/
-    }
-
-
-/!*    this.countClick += 3; /!*если нажали то добаляем 3 *!/!*!/
-    this.numberButtonClick += 1;
-
-    if (this.todosLength >  this.countClick) {
-      selectedTodos.length = 0;
-      for (let i = this.countClick; i < this.countClick + 3; i++ ) {
-        selectedTodos.push(i);
-      }
-    }
-    /!*если осталось 1 елемент*!/
-    if (this.lastPage === 1) {
-      selectedTodos.length = 0;
-      for (let j = this.todosLength - 1; j < this.todosLength; j++ ) {
-        selectedTodos.push(j);
-      }
-    }
-    /!*елси остался 2 елемент*!/
-    if (this.lastPage === 2) {
-      selectedTodos.length = 0;
-      for (let k = this.todosLength - 2; k < this.todosLength; k++ ) {
-        selectedTodos.push(k);
-      }
-    }
-
-    if (this.countClick >= this.todosLength) {
-      selectedTodos.length = 0;
-      this.selectNumberButton  = Math.ceil(this.todosLength / 3);
-      this.countClick = this.countClick - 3;
-      for (let r = this.todosLength - this.lastPage; r < this.todosLength; r++ ) {
-        selectedTodos.push(r);
-      }
-    }
-
-    let from: number = null;
-    let to: number = null;
-
-    if (selectedTodos.length === 1) {
-      from = selectedTodos[0];
-      to = selectedTodos[0];
-      this.clickNextButton.emit([from, to]);
-    }
-
-    if (selectedTodos.length === 2) {
-      from = selectedTodos[0];
-      to = selectedTodos[1];
-      this.clickNextButton.emit([from , to]);
-    }
-
-    if (selectedTodos.length === 3) {
-      from = selectedTodos[0];
-      to = selectedTodos[2];
-      this.clickNextButton.emit([from, to]);
-    }
-*/
   }
 }
