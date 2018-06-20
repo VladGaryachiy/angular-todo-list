@@ -25,7 +25,6 @@ export class TodoListService {
        this._todos.next(todos);
      }
      return this._todos.asObservable();
-
   }
 
   private getId(): number {
@@ -41,13 +40,13 @@ export class TodoListService {
     const todo: Todo = new Todo(this.getId(), name, this.getDate());
     this.todosData = [...this.todosData, todo];
     this._todos.next(this.todosData);
-/*    this.localStorageService.setLocalStorage(this._todos);*/
+    this.localStorageService.setLocalStorage(this.todosData);
   }
 
   public deleteTodo(todoId: number): void {
     this.todosData = this.todosData.filter(todo => todo.id !== todoId);
     this._todos.next(this.todosData);
-/*    this.localStorageService.setLocalStorage(this._todos);*/
+    this.localStorageService.setLocalStorage(this.todosData);
   }
 
   public updateTodo(todoId: number, name: string): void {
@@ -58,7 +57,7 @@ export class TodoListService {
           }
       });
     this._todos.next(this.todosData);
-/*    this.localStorageService.setLocalStorage(this._todos);*/
+    this.localStorageService.setLocalStorage(this.todosData);
   }
   public searchTodos(nameSearch: string): void {
     const search_todo: Todo[] = [];

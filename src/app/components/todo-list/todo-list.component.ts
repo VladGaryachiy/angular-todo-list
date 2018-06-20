@@ -80,18 +80,18 @@ export class TodoListComponent implements OnInit {
     }
   }
   clickNextButton(coordPage): void {
-    const from = coordPage[0];
-    const to = coordPage[1];
+    const from =  coordPage.from;
+    const to = coordPage.to;
     this.todosForVisible.length = 0; /*очищаем если естб даные*/
-    for (let i = from; i <= to; i++) {
+    for (let i = from; i < to; i++) {
       this.todosForVisible.push(this.todos[i]); /*- позиции елементов в массиве*/
     }
   }
   clickPrevButton(coordPage): void {
-    const from = coordPage[0];
-    const to = coordPage[1];
+    const from = coordPage.from;
+    const to = coordPage.to;
     this.todosForVisible.length = 0; /*очищаем если естб даные*/
-    for (let i = from; i <= to; i++) {
+    for (let i = from; i < to; i++) {
       this.todosForVisible.push(this.todos[i]); /*- позиции елементов в массиве*/
     }
   }

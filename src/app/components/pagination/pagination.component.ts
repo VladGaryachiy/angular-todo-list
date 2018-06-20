@@ -1,5 +1,6 @@
 import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { Todo } from '../../todo';
+import { CoordDataInterface } from '../../interfaces/paginationCoordsData';
 
 
 @Component({
@@ -64,12 +65,35 @@ export class PaginationComponent implements OnInit, OnChanges {
   }
 
   onClickPrevButton(): void {
+        this.numberButtonClick -= 1;
+ /*       this.countClick -= 3;*/
+
+        if (this.numberButtonClick <= 0) {
+          this.numberButtonClick = 1;
+        }
+
+        const to = this.numberButtonClick * this.countElementsInPage;
+        let from: number = null;
+
+        if (this.numberButtonClick <= this.countElementsInPage) {
+          from = (this.numberButtonClick * this.countElementsInPage)  - this.countElementsInPage;
+        } else {
+          from = (this.numberButtonClick - this.countElementsInPage) + 1;
+        }
+
+        const resultCoordData: CoordDataInterface = {from: from, to: to};
+
+        this.clickPrevButton.emit(resultCoordData);
+
+
+
+/*
     const selectedTodos: number[] = [];
 
-    this.lastPage = this.todosLength -  this.countClick; /*остаток с последней страницы*/
+    this.lastPage = this.todosLength -  this.countClick; /!*остаток с последней страницы*!/
 
     if (this.countClick >= 3) {
-      this.countClick -= 3; /*если нажали то добаляем 3 */
+      this.countClick -= 3; /!*если нажали то добаляем 3 *!/
     }
     this.numberButtonClick -= 1;
 
@@ -79,14 +103,14 @@ export class PaginationComponent implements OnInit, OnChanges {
         selectedTodos.push(i);
       }
     }
-    /*если осталось 1 елемента*/
+    /!*если осталось 1 елемента*!/
     if (this.lastPage === 1) {
       selectedTodos.length = 0;
       for (let i = this.todosLength - 4; i < this.todosLength - 1; i++ ) {
         selectedTodos.push(i);
       }
     }
-    /*елси остался 2 елемент*/
+    /!*елси остался 2 елемент*!/
     if (this.lastPage === 2) {
       selectedTodos.length = 0;
       for (let i = this.todosLength - 5; i < this.todosLength - 2; i++ ) {
@@ -105,24 +129,42 @@ export class PaginationComponent implements OnInit, OnChanges {
 
     const from: number = selectedTodos[0];
     const to: number = selectedTodos[2];
-    this.clickPrevButton.emit([from, to]);
+    this.clickPrevButton.emit([from, to]);*/
   }
 
 
 
   onClickNextButton(): void {
-    const selectedTodos: number[] = [];
+    this.numberButtonClick += 1;
+    let to: number = this.numberButtonClick * this.countElementsInPage;
+
+    if (to > this.todosLength ) {
+        to = this.todosLength;
+    }
+
+
+    let from: number = (this.numberButtonClick * this.countElementsInPage) - this.countElementsInPage;
+    if (from >= this.todosLength) {
+      this.numberButtonClick -= 1;
+      from = (this.numberButtonClick * this.countElementsInPage) - this.countElementsInPage;
+    }
+    const resultCoordData: CoordDataInterface = {from: from, to: to};
+
+    this.clickNextButton.emit(resultCoordData);
+
+
+   /* const selectedTodos: number[] = [];
       if (this.countClick === 0) {
         this.countClick += 3;
       } else {
         this.countClick += 3;
       }
     if (this.countClick < this.todosLength) {
-      this.lastPage = this.todosLength -  this.countClick; /*остаток с последней страницы*/
+      this.lastPage = this.todosLength -  this.countClick; /!*остаток с последней страницы*!/
     }
 
 
-/*    this.countClick += 3; /!*если нажали то добаляем 3 *!/*/
+/!*    this.countClick += 3; /!*если нажали то добаляем 3 *!/!*!/
     this.numberButtonClick += 1;
 
     if (this.todosLength >  this.countClick) {
@@ -131,14 +173,14 @@ export class PaginationComponent implements OnInit, OnChanges {
         selectedTodos.push(i);
       }
     }
-    /*если осталось 1 елемент*/
+    /!*если осталось 1 елемент*!/
     if (this.lastPage === 1) {
       selectedTodos.length = 0;
       for (let j = this.todosLength - 1; j < this.todosLength; j++ ) {
         selectedTodos.push(j);
       }
     }
-    /*елси остался 2 елемент*/
+    /!*елси остался 2 елемент*!/
     if (this.lastPage === 2) {
       selectedTodos.length = 0;
       for (let k = this.todosLength - 2; k < this.todosLength; k++ ) {
@@ -175,6 +217,6 @@ export class PaginationComponent implements OnInit, OnChanges {
       to = selectedTodos[2];
       this.clickNextButton.emit([from, to]);
     }
-
+*/
   }
 }
