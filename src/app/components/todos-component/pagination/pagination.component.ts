@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
-import { Todo } from '../../todo';
-import { CoordDataInterface } from '../../interfaces/paginationCoordsData';
+import { Todo } from '../../../todo';
+import { CoordDataInterface } from '../../../interfaces/paginationCoordsData';
 
 
 @Component({

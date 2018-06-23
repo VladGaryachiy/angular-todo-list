@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
-import { TodoListService } from '../../services/todo-list.service';
-import { Todo } from '../../todo';
+import { TodoListService } from '../../../services/todo-list.service';
+import { Todo } from '../../../todo';
 
 
 @Component({
@@ -26,12 +26,12 @@ export class TodoListComponent implements OnInit {
   createTodo(name: string): void {
     this.todoListService.createTodo(name);
     console.log(this.todos);
-/*    this.todos = this.todoListService.todos;*/
+/*    this.todos-module = this.todoListService.todos-module;*/
   }
 
   deleteTodo(id: number): void {
     this.todoListService.deleteTodo(id);
-   /* this.todos = this.todoListService.todos;*/
+   /* this.todos-module = this.todoListService.todos-module;*/
   }
 
   updateTodo(arr): void { /*при нажатии кнопки в задаче*/
@@ -45,7 +45,7 @@ export class TodoListComponent implements OnInit {
 
   searchTodos(text: string): void {
     this.todoListService.searchTodos(text);
-   /* this.todos = this.todoListService.searchTodos(text);*/
+   /* this.todos-module = this.todoListService.searchTodos(text);*/
   }
   sortByDate(): void {
     this.todoListService.sortByDate();

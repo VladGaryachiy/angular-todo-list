@@ -1,6 +1,13 @@
 
     <div class="main-container">
-      <!--main component todo list-->
-      <app-todo-list></app-todo-list>
+
+      <nav class="navbar">
+        <a routerLink="/todoList">Список задач</a>
+
+        <a routerLink="/secondTodoList">Вторая страница</a>
+      </nav>
+
+      <router-outlet></router-outlet>
     </div>
+
 

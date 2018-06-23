@@ -1,0 +1,10 @@
+
+
+    <div class="data-container">
+
+      <mat-checkbox (click)="getData()">Получить данные</mat-checkbox>
+      <div class="data" *ngIf ="check">
+        {{data}}
+      </div>
+
+    </div>
